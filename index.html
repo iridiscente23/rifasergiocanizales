@@ -775,7 +775,7 @@
 
             // Progreso de venta actual (0 a 100). Cambia este número
             // y la barra + el texto "% Vendido" se actualizan solos.
-            PROGRESS_PERCENT: 1,
+            PROGRESS_PERCENT: 2,
         };
 
         // Estado de cada uno de los 100 boletos (00 a 99).
@@ -785,7 +785,7 @@
         // Para liberarlo de nuevo:  statuses[13] = 'available';
         // Guarda el archivo y sube el cambio a tu servidor.
         const statuses = {
-            0: 'available', 1: 'available', 2: 'available', 3: 'available', 4: 'available', 5: 'available', 6: 'available', 7: 'available', 8: 'available', 9: 'available',  // 00-09
+            0: 'reserved', 1: 'available', 2: 'available', 3: 'available', 4: 'available', 5: 'available', 6: 'available', 7: 'available', 8: 'available', 9: 'available',  // 00-09
             10: 'available', 11: 'available', 12: 'available', 13: 'available', 14: 'available', 15: 'available', 16: 'available', 17: 'available', 18: 'available', 19: 'available',  // 10-19
             20: 'available', 21: 'available', 22: 'available', 23: 'available', 24: 'available', 25: 'available', 26: 'available', 27: 'available', 28: 'available', 29: 'available',  // 20-29
             30: 'available', 31: 'available', 32: 'reserved', 33: 'available', 34: 'available', 35: 'available', 36: 'available', 37: 'available', 38: 'available', 39: 'available',  // 30-39
