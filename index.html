@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Especial | Gana 1.500.000 COP</title>
+    <!-- Fuentes premium y modernas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --surface-color: #15161a;
+            --primary-glow: #d4af37; /* Dorado cálido */
+            --primary-dark: #997a15;
+            --secondary-color: #7a0016; /* Borgoña oscuro */
+            --text-main: #ffffff;
+            --text-muted: #8a8d98;
+
+            --available-bg: #123a24;
+            --available-border: #2f9e63;
+            --available-text: #ffffff;
+            --available-hover: #22c55e;
+            --reserved-bg: #d4af37;
+            --reserved-text: #000000;
+            --sold-bg: #111111;
+            --sold-text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(122, 0, 22, 0.1) 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* --- HERO & ANIMACIÓN VOLUMÉTRICA --- */
+        header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--primary-glow);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-headline {
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.25;
+            max-width: 700px;
+            margin: 0 auto 0.75rem;
+        }
+
+        .hero-headline .highlight {
+            color: var(--primary-glow);
+        }
+
+        .hero-subline {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .trust-item i {
+            color: var(--primary-glow);
+        }
+
+        /* Efecto 3D Volumétrico */
+        .prize-container {
+            position: relative;
+            margin: 1rem 0;
+            display: inline-block;
+            perspective: 1000px;
+        }
+
+        .prize-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: var(--primary-glow);
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: pulse-glow 3s infinite alternate;
+            z-index: -1;
+        }
+
+        .volumetric-text {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            text-shadow:
+                0 1px 0 #cccccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbbbbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaaaaa,
+                0 6px 1px rgba(0,0,0,.1),
+                0 0 5px rgba(0,0,0,.1),
+                0 1px 3px rgba(0,0,0,.3),
+                0 3px 5px rgba(0,0,0,.2),
+                0 5px 10px rgba(0,0,0,.25),
+                0 10px 10px rgba(0,0,0,.2),
+                0 20px 20px rgba(212, 175, 55, 0.4); /* Reflejo dorado */
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .volumetric-currency {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--primary-glow);
+            text-shadow: none;
+            display: inline-block;
+            transform: translateY(-20px);
+        }
+
+        .sub-prize {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .sub-prize span {
+            color: #fff;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        /* --- BARRA DE PROGRESO --- */
+        .progress-section {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-glow));
+            border-radius: 10px;
+            width: 0%; /* Se controla desde CONFIG.PROGRESS_PERCENT en el <script> */
+            position: relative;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Efecto de brillo animado sobre la barra */
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2.5s infinite;
+        }
+
+        .progress-text {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .progress-text strong {
+            color: var(--primary-glow);
+        }
+
+        /* --- CUADRÍCULA DE BOLETOS --- */
+        .tickets-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.available { background: var(--available-hover); border: 1px solid var(--available-border); }
+        .dot.reserved { background: var(--reserved-bg); box-shadow: 0 0 10px rgba(212,175,55,0.5); }
+        .dot.sold { background: var(--sold-bg); border: 1px solid #222; }
+
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .ticket-btn {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .ticket-btn.available {
+            background: var(--available-bg);
+            color: var(--available-text);
+            border: 1px solid var(--available-border);
+        }
+
+        .ticket-btn.available:hover {
+            border-color: var(--available-hover);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.35);
+            transform: translateY(-2px);
+            color: var(--available-hover);
+        }
+
+        .ticket-btn.reserved {
+            background: var(--reserved-bg);
+            color: var(--reserved-text);
+            cursor: not-allowed;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .ticket-btn.sold {
+            background: var(--sold-bg);
+            color: var(--sold-text);
+            border: 1px solid #1a1a1a;
+            cursor: not-allowed;
+        }
+
+        /* --- CÓMO FUNCIONA --- */
+        .how-it-works {
+            background: var(--surface-color);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin: 4rem 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--primary-glow);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- FOOTER / NOTA LEGAL --- */
+        footer {
+            margin-top: 4rem;
+            padding: 0 0 7rem;
+        }
+
+        .disclaimer-box {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 1.5rem 1.75rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .disclaimer-box h4 {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .disclaimer-box h4 i {
+            color: var(--primary-glow);
+        }
+
+        .disclaimer-box strong {
+            color: var(--text-main);
+        }
+
+        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s;
+            z-index: 100;
+            text-decoration: none;
+            animation: wa-pulse 2.5s infinite;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- MODAL DE PAGO --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: var(--surface-color);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+        }
+
+        .modal-congrats {
+            color: var(--primary-glow);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-number {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--text-main);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-price {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-qr {
+            width: 190px;
+            height: 190px;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border-radius: 14px;
+            border: 4px solid var(--primary-glow);
+            display: block;
+        }
+
+        .payment-info {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 0.25rem 1rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            gap: 0.75rem;
+        }
+
+        .payment-row:last-child {
+            border-bottom: none;
+        }
+
+        .payment-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .payment-label i {
+            margin-right: 0.4rem;
+            color: var(--primary-glow);
+        }
+
+        .payment-value-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .payment-value {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .copy-btn {
+            background: none;
+            border: 1px solid var(--available-border);
+            color: var(--text-muted);
+            border-radius: 6px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--primary-glow);
+            color: var(--primary-glow);
+        }
+
+        .modal-instructions {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .whatsapp-confirm-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: #25d366;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .whatsapp-confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.1; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes wa-pulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(37, 211, 102, 0.75); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .tickets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+                gap: 0.5rem;
+            }
+            .ticket-btn {
+                font-size: 1rem;
+            }
+            .wa-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            .modal-box {
+                padding: 2rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- HERO SECTION -->
+        <header>
+            <div class="badge"><i class="fa-solid fa-shield-heart"></i> Rifa Confiable · Pago Directo al Organizador</div>
+            <h1 class="hero-headline">Hoy puedes ser tú quien <span class="highlight">cambie su suerte</span> por solo $50.000</h1>
+            <p class="hero-subline">Una rifa organizada por: Sergio Canizales, pro-fondos curso de ingles, sigue el sorteo en vivo hasta el día del resultado.</p>
+
+            <div class="trust-row">
+                <div class="trust-item"><i class="fa-solid fa-eye"></i> Progreso 100% visible</div>
+                <div class="trust-item"><i class="fa-solid fa-hand-holding-dollar"></i> Pago directo, sin intermediarios</div>
+                <div class="trust-item"><i class="fa-solid fa-comments"></i> Soporte por WhatsApp</div>
+            </div>
+
+            <div class="prize-container">
+                <div class="prize-glow"></div>
+                <h1 class="volumetric-text">1.500.000 <span class="volumetric-currency">COP</span></h1>
+            </div>
+            <p class="sub-prize">Premio en Efectivo. + Premio Menor de <span>500.000 COP</span></p>
+        </header>
+
+        <!-- PROGRESS SECTION -->
+        <section class="progress-section">
+            <div class="progress-header">
+                <span>Meta para fijar fecha: 90%</span>
+                <span id="percentage-display">0% Vendido</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+            <p class="progress-text">¡Al llegar al <strong>90%</strong> de los boletos, revelamos la fecha exacta del sorteo!</p>
+        </section>
+
+        <!-- TICKETS GRID -->
+        <section class="tickets-section">
+            <h2 class="section-title">¡Elige tu Número Ganador!</h2>
+
+            <div class="legend">
+                <div class="legend-item"><div class="dot available"></div> Disponible (50k)</div>
+                <div class="legend-item"><div class="dot reserved"></div> Reservado</div>
+                <div class="legend-item"><div class="dot sold"></div> Vendido</div>
+            </div>
+
+            <div class="tickets-grid" id="grid">
+                <!-- Los botones se generan por JavaScript -->
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="how-it-works">
+            <h2 class="section-title">¿Cómo Funciona?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <i class="fa-solid fa-ticket step-icon"></i>
+                    <h3>1. Compra tu Boleto</h3>
+                    <p>Elige tu número del 00 al 99. Cada boleto cuesta 50.000 COP. Al hacer clic verás el QR y los datos para pagar por Nequi o Bre-B al instante.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fa-solid fa-calendar-check step-icon"></i>
+                    <h3>2. Fijación de Fecha</h3>
+                    <p>Sin esperas interminables. En cuanto el medidor llegue al 90% de boletos vendidos, anunciaremos la fecha del sorteo oficial.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fa-solid fa-trophy step-icon"></i>
+                    <h3>3. ¡Gana con la Lotería!</h3>
+                    <p>Si las 2 últimas cifras del resultado coinciden con tu número, ganas 1.5M. Si coinciden las 2 primeras cifras, te llevas 500.000 COP.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER / NOTA LEGAL -->
+        <footer>
+            <div class="disclaimer-box">
+                <h4><i class="fa-solid fa-circle-info"></i> Nota Legal</h4>
+                <p>El premio mayor ($1.500.000 COP) se otorga al boleto cuyo número coincida con las <strong>dos últimas cifras</strong> del resultado de la lotería elegida. El premio menor ($500.000 COP) se otorga al boleto cuyo número coincida con las <strong>dos primeras cifras</strong> del mismo resultado. En caso de que el resultado de la lotería esté conformado por dos pares de cifras iguales (por ejemplo, 45-45), <strong>solo se hará válido el premio mayor</strong> para el número 45, y el premio menor <strong>pasará a jugar automáticamente con las dos primeras cifras del sorteo inmediatamente siguiente de la misma lotería</strong>.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/573103162939?text=Hola,%20quiero%20comprar%20un%20boleto%20para%20la%20rifa." class="wa-float" target="_blank" title="Contáctanos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- MODAL DE PAGO -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <p class="modal-congrats">¡Excelente elección!</p>
+            <p class="modal-number" id="modal-number">00</p>
+            <p class="modal-price">Boleto por <strong>$50.000 COP</strong></p>
+
+            <img src="qr-pago_ok.jpeg" alt="Código QR de pago" class="modal-qr">
+
+            <div class="payment-info">
+                <div class="payment-row">
+                    <span class="payment-label"><i class="fa-solid fa-mobile-screen"></i>Nequi</span>
+                    <div class="payment-value-group">
+                        <span class="payment-value">3103162939</span>
+                        <button class="copy-btn" data-copy="3103162939">Copiar</button>
+                    </div>
+                </div>
+                <div class="payment-row">
+                    <span class="payment-label"><i class="fa-solid fa-money-bill-transfer"></i>Bre-B</span>
+                    <div class="payment-value-group">
+                        <span class="payment-value">@3103162939</span>
+                        <button class="copy-btn" data-copy="@3103162939">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <p class="modal-instructions">Escanea el QR o usa los datos de arriba para pagar. Cuando termines, envíanos el comprobante por WhatsApp indicando tu número para reservar tu boleto.</p>
+
+            <a href="#" id="modal-whatsapp-btn" class="whatsapp-confirm-btn" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Enviar Comprobante por WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================
+           CONFIGURACIÓN — edita aquí para actualizar la web
+           ========================================================= */
+        const CONFIG = {
+            // Número de WhatsApp del organizador (con código de país, sin +)
+            WHATSAPP_NUMBER: '573103162939',
+
+            // Progreso de venta actual (0 a 100). Cambia este número
+            // y la barra + el texto "% Vendido" se actualizan solos.
+            PROGRESS_PERCENT: 0,
+        };
+
+        // Estado de cada uno de los 100 boletos (00 a 99).
+        // Valores posibles: 'available' (verde), 'reserved' (dorado), 'sold' (gris oscuro).
+        // Para reservar el 13:      statuses[13] = 'reserved';
+        // Cuando llegue el pago:    statuses[13] = 'sold';
+        // Para liberarlo de nuevo:  statuses[13] = 'available';
+        // Guarda el archivo y sube el cambio a tu servidor.
+        const statuses = {
+            0: 'available', 1: 'available', 2: 'available', 3: 'available', 4: 'available', 5: 'available', 6: 'available', 7: 'available', 8: 'available', 9: 'available',  // 00-09
+            10: 'available', 11: 'available', 12: 'available', 13: 'available', 14: 'available', 15: 'available', 16: 'available', 17: 'available', 18: 'available', 19: 'available',  // 10-19
+            20: 'available', 21: 'available', 22: 'available', 23: 'available', 24: 'available', 25: 'available', 26: 'available', 27: 'available', 28: 'available', 29: 'available',  // 20-29
+            30: 'available', 31: 'available', 32: 'available', 33: 'available', 34: 'available', 35: 'available', 36: 'available', 37: 'available', 38: 'available', 39: 'available',  // 30-39
+            40: 'available', 41: 'available', 42: 'available', 43: 'available', 44: 'available', 45: 'available', 46: 'available', 47: 'available', 48: 'available', 49: 'available',  // 40-49
+            50: 'available', 51: 'available', 52: 'available', 53: 'available', 54: 'available', 55: 'available', 56: 'available', 57: 'available', 58: 'available', 59: 'available',  // 50-59
+            60: 'available', 61: 'available', 62: 'available', 63: 'available', 64: 'available', 65: 'available', 66: 'available', 67: 'available', 68: 'available', 69: 'available',  // 60-69
+            70: 'available', 71: 'available', 72: 'available', 73: 'available', 74: 'available', 75: 'available', 76: 'available', 77: 'available', 78: 'available', 79: 'available',  // 70-79
+            80: 'available', 81: 'available', 82: 'available', 83: 'available', 84: 'available', 85: 'available', 86: 'available', 87: 'available', 88: 'available', 89: 'available',  // 80-89
+            90: 'available', 91: 'available', 92: 'available', 93: 'available', 94: 'available', 95: 'available', 96: 'available', 97: 'available', 98: 'available', 99: 'available',  // 90-99
+        };
+
+        /* ========================================================= */
+
+        function getStatus(n) {
+            return statuses[n] || 'available';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('grid');
+            const overlay = document.getElementById('modal-overlay');
+            const modalNumber = document.getElementById('modal-number');
+            const modalWhatsappBtn = document.getElementById('modal-whatsapp-btn');
+            const modalClose = document.getElementById('modal-close');
+
+            function openModal(numberString) {
+                modalNumber.textContent = numberString;
+                const mensaje = `¡Hola! Ya pagué el boleto número *${numberString}* de la rifa. Aquí adjunto mi comprobante de pago.`;
+                modalWhatsappBtn.href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+                overlay.classList.add('active');
+            }
+
+            function closeModal() {
+                overlay.classList.remove('active');
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            overlay.querySelectorAll('.copy-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const value = btn.getAttribute('data-copy');
+                    navigator.clipboard.writeText(value).then(() => {
+                        const original = btn.textContent;
+                        btn.textContent = '¡Copiado!';
+                        setTimeout(() => { btn.textContent = original; }, 1500);
+                    });
+                });
+            });
+
+            // Generar 100 boletos (00 al 99)
+            for (let i = 0; i < 100; i++) {
+                const btn = document.createElement('button');
+                const numberString = i.toString().padStart(2, '0');
+                btn.textContent = numberString;
+
+                const status = getStatus(i);
+
+                if (status === 'sold') {
+                    btn.classList.add('ticket-btn', 'sold');
+                    btn.disabled = true;
+                } else if (status === 'reserved') {
+                    btn.classList.add('ticket-btn', 'reserved');
+                    btn.disabled = true;
+                } else {
+                    btn.classList.add('ticket-btn', 'available');
+                    btn.addEventListener('click', () => openModal(numberString));
+                }
+
+                grid.appendChild(btn);
+            }
+
+            // Progreso de venta (controlado desde CONFIG.PROGRESS_PERCENT)
+            const pct = Math.max(0, Math.min(100, CONFIG.PROGRESS_PERCENT));
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+            document.getElementById('percentage-display').textContent = `${pct}% Vendido`;
+        });
+    </script>
+</body>
+</html>

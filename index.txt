@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo Exclusivo | Gana 1.5M COP</title>
+    <!-- Fuentes premium y modernas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --surface-color: #15161a;
+            --primary-glow: #d4af37; /* Dorado cálido */
+            --primary-dark: #997a15;
+            --secondary-color: #7a0016; /* Borgoña oscuro */
+            --text-main: #ffffff;
+            --text-muted: #8a8d98;
+            
+            --available-bg: #1e2026;
+            --available-border: #333640;
+            --reserved-bg: #d4af37;
+            --reserved-text: #000000;
+            --sold-bg: #111111;
+            --sold-text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(122, 0, 22, 0.1) 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* --- HERO & ANIMACIÓN VOLUMÉTRICA --- */
+        header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--primary-glow);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Efecto 3D Volumétrico */
+        .prize-container {
+            position: relative;
+            margin: 1rem 0;
+            display: inline-block;
+            perspective: 1000px;
+        }
+
+        .prize-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: var(--primary-glow);
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: pulse-glow 3s infinite alternate;
+            z-index: -1;
+        }
+
+        .volumetric-text {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            text-shadow: 
+                0 1px 0 #cccccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbbbbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaaaaa,
+                0 6px 1px rgba(0,0,0,.1),
+                0 0 5px rgba(0,0,0,.1),
+                0 1px 3px rgba(0,0,0,.3),
+                0 3px 5px rgba(0,0,0,.2),
+                0 5px 10px rgba(0,0,0,.25),
+                0 10px 10px rgba(0,0,0,.2),
+                0 20px 20px rgba(212, 175, 55, 0.4); /* Reflejo dorado */
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .volumetric-currency {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: var(--primary-glow);
+            text-shadow: none;
+            display: inline-block;
+            transform: translateY(-20px);
+        }
+
+        .sub-prize {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .sub-prize span {
+            color: #fff;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        /* --- BARRA DE PROGRESO --- */
+        .progress-section {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-glow));
+            border-radius: 10px;
+            width: 15%; /* Porcentaje inicial para demostrar visualmente */
+            position: relative;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Efecto de brillo animado sobre la barra */
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2.5s infinite;
+        }
+
+        .progress-text {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        
+        .progress-text strong {
+            color: var(--primary-glow);
+        }
+
+        /* --- CUADRÍCULA DE BOLETOS --- */
+        .tickets-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.available { background: var(--available-bg); border: 1px solid var(--available-border); }
+        .dot.reserved { background: var(--reserved-bg); box-shadow: 0 0 10px rgba(212,175,55,0.5); }
+        .dot.sold { background: var(--sold-bg); border: 1px solid #222; }
+
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .ticket-btn {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .ticket-btn.available {
+            background: var(--available-bg);
+            color: var(--text-main);
+            border: 1px solid var(--available-border);
+        }
+
+        .ticket-btn.available:hover {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+            color: var(--primary-glow);
+        }
+
+        .ticket-btn.reserved {
+            background: var(--reserved-bg);
+            color: var(--reserved-text);
+            cursor: not-allowed;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .ticket-btn.sold {
+            background: var(--sold-bg);
+            color: var(--sold-text);
+            border: 1px solid #1a1a1a;
+            cursor: not-allowed;
+        }
+
+        /* --- CÓMO FUNCIONA --- */
+        .how-it-works {
+            background: var(--surface-color);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin: 4rem 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--primary-glow);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s;
+            z-index: 100;
+            text-decoration: none;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.1; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .tickets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+                gap: 0.5rem;
+            }
+            .ticket-btn {
+                font-size: 1rem;
+            }
+            .wa-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HERO SECTION -->
+        <header>
+            <div class="badge">Sorteo Exclusivo de Alta Probabilidad</div>
+            <div class="prize-container">
+                <div class="prize-glow"></div>
+                <h1 class="volumetric-text">1.500.000 <span class="volumetric-currency">COP</span></h1>
+            </div>
+            <p class="sub-prize">Premio en Efectivo. + Premio Menor de <span>500.000 COP</span></p>
+        </header>
+
+        <!-- PROGRESS SECTION -->
+        <section class="progress-section">
+            <div class="progress-header">
+                <span>Meta para fijar fecha: 90%</span>
+                <span id="percentage-display">15% Vendido</span>
+            </div>
+            <div class="progress-bar-container">
+                <!-- Se ajusta el width desde CSS (clase progress-bar-fill) o JS -->
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+            <p class="progress-text">¡Al llegar al <strong>90%</strong> de los boletos, revelamos la fecha exacta del sorteo!</p>
+        </section>
+
+        <!-- TICKETS GRID -->
+        <section class="tickets-section">
+            <h2 class="section-title">Elige tu Número de la Suerte</h2>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="dot available"></div> Disponible (50k)</div>
+                <div class="legend-item"><div class="dot reserved"></div> Reservado</div>
+                <div class="legend-item"><div class="dot sold"></div> Vendido</div>
+            </div>
+
+            <div class="tickets-grid" id="grid">
+                <!-- Los botones se generarán por JavaScript -->
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="how-it-works">
+            <h2 class="section-title">¿Cómo Funciona?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <i class="fa-solid fa-ticket step-icon"></i>
+                    <h3>1. Compra tu Boleto</h3>
+                    <p>Elige tu número del 00 al 99. Cada boleto cuesta 50.000 COP. Contáctanos por WhatsApp para asegurar el pago por transferencia o Nequi.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fa-solid fa-calendar-check step-icon"></i>
+                    <h3>2. Fijación de Fecha</h3>
+                    <p>Sin esperas interminables. En cuanto el medidor llegue al 90% de boletos vendidos, anunciaremos la fecha del sorteo oficial.</p>
+                </div>
+                <div class="step-card">
+                    <i class="fa-solid fa-trophy step-icon"></i>
+                    <h3>3. ¡Gana con la Lotería!</h3>
+                    <p>Si las 2 últimas cifras de la Lotería Mayor coinciden, ganas 1.5M. Si coinciden las 2 primeras cifras, te llevas 500.000 COP.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- WHATSAPP CTA -->
+    <!-- Reemplaza "TUNUMERO" con tu número de teléfono incluyendo el código de país (ej. 573001234567) -->
+    <a href="https://wa.me/TUNUMERO?text=Hola,%20quiero%20comprar%20un%20boleto%20para%20la%20rifa." class="wa-float" target="_blank" title="Contáctanos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('grid');
+            
+            // Simulación de datos para la demostración visual
+            // Puedes cambiar estos arrays manualmente para actualizar tu web luego
+            const soldTickets = [12, 45, 88, 7, 99, 23, 67]; 
+            const reservedTickets = [5, 50, 14, 82, 33];
+
+            // Generar 100 boletos (00 al 99)
+            for (let i = 0; i < 100; i++) {
+                const btn = document.createElement('button');
+                
+                // Formatear a 2 dígitos (00, 01, ..., 99)
+                const numberString = i.toString().padStart(2, '0');
+                btn.textContent = numberString;
+                
+                // Determinar el estado del boleto
+                if (soldTickets.includes(i)) {
+                    btn.classList.add('ticket-btn', 'sold');
+                    btn.disabled = true;
+                } else if (reservedTickets.includes(i)) {
+                    btn.classList.add('ticket-btn', 'reserved');
+                    btn.disabled = true;
+                } else {
+                    btn.classList.add('ticket-btn', 'available');
+                    // Agregar evento de click para contactar por WhatsApp
+                    btn.addEventListener('click', () => {
+                        const numeroWA = 'TUNUMERO'; // PON TU NUMERO AQUÍ (ej: 573100000000)
+                        const mensaje = `¡Hola! Me interesa comprar el boleto número *${numberString}* de la rifa. ¿Está disponible?`;
+                        const url = `https://wa.me/${numeroWA}?text=${encodeURIComponent(mensaje)}`;
+                        window.open(url, '_blank');
+                    });
+                }
+                
+                grid.appendChild(btn);
+            }
+
+            // Calcular progreso real basado en boletos (Opcional: automatizar)
+            // const totalVendidosYReservados = soldTickets.length + reservedTickets.length;
+            // document.getElementById('progress-bar').style.width = `${totalVendidosYReservados}%`;
+            // document.getElementById('percentage-display').textContent = `${totalVendidosYReservados}% Vendido`;
+        });
+    </script>
+</body>
+</html>
