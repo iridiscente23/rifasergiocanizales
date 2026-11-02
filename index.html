@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -486,6 +486,324 @@
             font-size: 0.85rem;
         }
 
+        /* --- RESULTADOS / GANADORES --- */
+        [hidden] { display: none !important; }
+
+        /* En modo resultados se ocultan las secciones de venta */
+        .results-mode header,
+        .results-mode .progress-section,
+        .results-mode .draw-section,
+        .results-mode .how-it-works {
+            display: none;
+        }
+
+        .winners-section {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 3.5rem 1.25rem 3rem;
+            margin: 2rem 0 3rem;
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.30), transparent 60%),
+                linear-gradient(160deg, #1d1606, #15161a 45%, #2a0610);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 60px rgba(212, 175, 55, 0.15);
+        }
+
+        .winners-rays {
+            position: absolute;
+            inset: -60%;
+            background: repeating-conic-gradient(from 0deg, rgba(212, 175, 55, 0.07) 0deg 10deg, transparent 10deg 20deg);
+            animation: spin 60s linear infinite;
+            pointer-events: none;
+        }
+
+        .winners-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .preview-flag {
+            display: flex;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            gap: 0.5rem;
+            background: #b91c1c;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+        }
+
+        .winners-title {
+            font-size: clamp(2.4rem, 8vw, 4.2rem);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(90deg, #d4af37, #fff3c4, #d4af37, #f5d76e, #d4af37);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gold-shine 4s linear infinite;
+        }
+
+        .winners-sub {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .winners-sub strong {
+            color: var(--text-main);
+        }
+
+        /* Resultado de la lotería: 4 cifras */
+        .lottery-result {
+            display: inline-flex;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .digit-group small {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .digits {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .digits span {
+            width: clamp(52px, 14vw, 68px);
+            height: clamp(66px, 18vw, 86px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(2.2rem, 8vw, 3rem);
+            font-weight: 900;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.45);
+            font-variant-numeric: tabular-nums;
+            animation: flip-in 0.6s ease-out both;
+        }
+
+        .digit-group.gold .digits span {
+            color: var(--primary-glow);
+            border: 2px solid var(--primary-glow);
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+        }
+
+        .digit-group.silver .digits span {
+            color: #dfe4ea;
+            border: 2px solid #9aa3ad;
+            box-shadow: 0 0 14px rgba(192, 199, 209, 0.2);
+        }
+
+        .digit-group.gold small { color: var(--primary-glow); }
+
+        /* Tarjetas de ganadores */
+        .winner-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            max-width: 720px;
+            margin: 0 auto 2.25rem;
+        }
+
+        .winner-card {
+            border-radius: 20px;
+            padding: 1.75rem 1.25rem;
+            background: rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .winner-card.gold {
+            border: 2px solid var(--primary-glow);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+        }
+
+        .winner-card.silver {
+            border: 2px solid #9aa3ad;
+            box-shadow: 0 0 25px rgba(192, 199, 209, 0.12);
+        }
+
+        .winner-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .winner-card.gold .winner-icon { color: var(--primary-glow); }
+        .winner-card.silver .winner-icon { color: #c0c7d1; }
+
+        .winner-label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .winner-amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .winner-number {
+            display: inline-block;
+            font-size: clamp(4rem, 16vw, 6rem);
+            font-weight: 900;
+            line-height: 1;
+            padding: 0.15em 0.45em;
+            border-radius: 18px;
+            border: 2px dashed currentColor;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .winner-card.gold .winner-number {
+            color: var(--primary-glow);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+        }
+
+        .winner-card.silver .winner-number {
+            color: #e5e9ee;
+            text-shadow: 0 0 24px rgba(229, 233, 238, 0.45);
+        }
+
+        .winner-status {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        /* Premio desierto (número no vendido) */
+        .winner-card.void {
+            border-color: #444;
+            box-shadow: none;
+            cursor: default;
+        }
+
+        .winner-card.void .winner-number {
+            color: #666;
+            text-shadow: none;
+            animation: none;
+        }
+
+        .winner-card.void .winner-status {
+            color: var(--text-muted);
+        }
+
+        .winners-thanks {
+            max-width: 560px;
+            margin: 0 auto 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .whatsapp-confirm-btn.winners-cta {
+            display: inline-flex;
+            padding: 0.9rem 1.5rem;
+        }
+
+        /* Números ganadores resaltados en el tablero */
+        .ticket-btn { position: relative; }
+
+        .ticket-btn.winner-gold,
+        .ticket-btn.winner-silver {
+            z-index: 1;
+            transform: scale(1.12);
+            opacity: 1;
+            animation: winner-pulse 1.8s ease-in-out infinite;
+        }
+
+        .ticket-btn.winner-gold {
+            background: linear-gradient(135deg, #f5d76e, #d4af37 60%, #997a15);
+            color: #000;
+            border: none;
+            --pulse: rgba(212, 175, 55, 0.8);
+        }
+
+        .ticket-btn.winner-silver {
+            background: linear-gradient(135deg, #ffffff, #c0c7d1 60%, #8a939e);
+            color: #000;
+            border: none;
+            --pulse: rgba(229, 233, 238, 0.7);
+        }
+
+        .ticket-btn.winner-gold::after,
+        .ticket-btn.winner-silver::after {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -12px;
+            right: -8px;
+            font-size: 0.9rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .ticket-btn.winner-gold::after { content: '\f521'; color: var(--primary-glow); }
+        .ticket-btn.winner-silver::after { content: '\f5a2'; color: #c0c7d1; }
+
+        .results-mode .ticket-btn.available,
+        .results-mode .ticket-btn.reserved {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .results-mode .ticket-btn.available:hover {
+            transform: none;
+            box-shadow: none;
+            color: var(--available-text);
+        }
+
+        .dot.winner-gold { background: var(--primary-glow); box-shadow: 0 0 10px rgba(212,175,55,0.8); }
+        .dot.winner-silver { background: #c0c7d1; box-shadow: 0 0 10px rgba(229,233,238,0.6); }
+
+        .confetti-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @keyframes gold-shine { to { background-position: 200% center; } }
+
+        @keyframes flip-in {
+            0% { transform: rotateX(90deg); opacity: 0; }
+            100% { transform: rotateX(0); opacity: 1; }
+        }
+
+        @keyframes winner-pulse {
+            0%, 100% { box-shadow: 0 0 8px var(--pulse); }
+            50% { box-shadow: 0 0 26px var(--pulse); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .winners-rays, .winners-title, .winner-number, .digits span,
+            .ticket-btn.winner-gold, .ticket-btn.winner-silver { animation: none; }
+        }
+
         /* --- FOOTER / NOTA LEGAL --- */
         footer {
             margin-top: 4rem;
@@ -768,6 +1086,44 @@
 
     <div class="container">
 
+        <!-- GANADORES: se muestra solo cuando CONFIG.RESULTS.PUBLISHED = true -->
+        <section class="winners-section" id="winners" hidden>
+            <div class="winners-rays" aria-hidden="true"></div>
+            <div class="winners-content">
+                <p class="preview-flag" id="preview-flag" hidden><i class="fa-solid fa-eye"></i> Vista previa · no es el resultado real</p>
+                <p class="draw-kicker"><i class="fa-solid fa-flag-checkered"></i> Sorteo finalizado</p>
+                <h1 class="winners-title">¡Tenemos ganadores!</h1>
+                <p class="winners-sub">Resultado del premio mayor de la <strong>Lotería de Boyacá</strong> · <span id="res-date"></span></p>
+
+                <div class="lottery-result" id="lottery-result">
+                    <div class="digit-group silver"><div class="digits" id="res-digits-first"></div><small>2.º premio</small></div>
+                    <div class="digit-group gold"><div class="digits" id="res-digits-last"></div><small>Premio mayor</small></div>
+                </div>
+
+                <div class="winner-cards">
+                    <article class="winner-card gold" id="card-first" title="¡Toca para celebrar otra vez!">
+                        <div class="winner-icon"><i class="fa-solid fa-crown"></i></div>
+                        <p class="winner-label">Premio mayor</p>
+                        <p class="winner-amount">$1.500.000</p>
+                        <div class="winner-number" id="win-first">--</div>
+                        <p class="winner-status" id="win-first-status"></p>
+                    </article>
+                    <article class="winner-card silver" id="card-second">
+                        <div class="winner-icon"><i class="fa-solid fa-medal"></i></div>
+                        <p class="winner-label">Segundo premio</p>
+                        <p class="winner-amount">$500.000</p>
+                        <div class="winner-number" id="win-second">--</div>
+                        <p class="winner-status" id="win-second-status"></p>
+                    </article>
+                </div>
+
+                <p class="winners-thanks">Los ganadores serán contactados directamente por WhatsApp para la entrega del premio. ¡Gracias a todos por apoyar mi curso de inglés! 🙏</p>
+                <a class="whatsapp-confirm-btn winners-cta" id="winners-wa" href="#" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> ¿Tienes un número ganador? Escríbeme
+                </a>
+            </div>
+        </section>
+
         <!-- HERO SECTION -->
         <header>
             <div class="badge"><i class="fa-solid fa-shield-heart"></i> Rifa Confiable · Pago Directo al Organizador</div>
@@ -815,9 +1171,9 @@
 
         <!-- TICKETS GRID -->
         <section class="tickets-section">
-            <h2 class="section-title">¡Elige tu Número Ganador!</h2>
+            <h2 class="section-title" id="tickets-title">¡Elige tu Número Ganador!</h2>
 
-            <div class="legend">
+            <div class="legend" id="legend">
                 <div class="legend-item"><div class="dot available"></div> Disponible (50k)</div>
                 <div class="legend-item"><div class="dot reserved"></div> Reservado</div>
                 <div class="legend-item"><div class="dot sold"></div> Vendido</div>
@@ -873,7 +1229,7 @@
     </div>
 
     <!-- WHATSAPP FLOTANTE -->
-    <a href="https://wa.me/573103162939?text=Hola,%20quiero%20comprar%20un%20boleto%20para%20la%20rifa." class="wa-float" target="_blank" title="Contáctanos por WhatsApp">
+    <a href="https://wa.me/573103162939?text=Hola,%20quiero%20comprar%20un%20boleto%20para%20la%20rifa." class="wa-float" id="wa-float" target="_blank" title="Contáctanos por WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -925,10 +1281,29 @@
 
             // Progreso de venta actual (0 a 100). Cambia este número
             // y la barra + el texto "% Vendido" se actualizan solos.
-            PROGRESS_PERCENT: 96,
+            PROGRESS_PERCENT: 75,
 
             // Fecha y hora del sorteo (hora Colombia, UTC-5) para la cuenta regresiva
             DRAW_DATE: '2026-10-31T22:30:00-05:00',
+
+            // ================= RESULTADOS DEL SORTEO =================
+            // Cuando conozcas el resultado:
+            //   1) Escribe los números ganadores (dos cifras, entre comillas).
+            //   2) Cambia PUBLISHED a true, guarda y sube el archivo a Netlify.
+            // Mientras PUBLISHED sea false, la página sigue vendiendo normal.
+            // Para ver cómo quedará SIN publicarlo, abre la página con
+            // ?vista=ganadores al final de la dirección.
+            RESULTS: {
+                PUBLISHED: true,
+                FIRST_PRIZE: '57',     // Premio mayor: dos ÚLTIMAS cifras
+                SECOND_PRIZE: '48',    // Segundo premio: dos PRIMERAS cifras
+                // Número completo de la Lotería de Boyacá (4 cifras).
+                // Si lo dejas vacío ('') se arma solo: SEGUNDO + PRIMERO (ej. 3923).
+                LOTTERY_NUMBER: '',
+                DRAW_LABEL: 'sábado 31 de octubre de 2026',
+            },
+            // Si un número ganador NO está marcado como 'sold' en la lista
+            // de abajo, la página muestra ese premio como DESIERTO.
         };
 
         // Estado de cada uno de los 100 boletos (00 a 99).
@@ -938,7 +1313,7 @@
         // Para liberarlo de nuevo:  statuses[13] = 'available';
         // Guarda el archivo y sube el cambio a tu servidor.
         const statuses = {
-            0: 'sold', 1: 'sold', 2: 'sold', 3: 'sold', 4: 'sold', 5: 'sold', 6: 'sold', 7: 'sold', 8: 'sold', 9: 'sold',  // 00-09
+             0: 'sold', 1: 'sold', 2: 'sold', 3: 'sold', 4: 'sold', 5: 'sold', 6: 'sold', 7: 'sold', 8: 'sold', 9: 'sold',  // 00-09
             10: 'sold', 11: 'sold', 12: 'sold', 13: 'sold', 14: 'sold', 15: 'sold', 16: 'sold', 17: 'sold', 18: 'sold', 19: 'sold',  // 10-19
             20: 'sold', 21: 'sold', 22: 'sold', 23: 'sold', 24: 'reserved', 25: 'sold', 26: 'sold', 27: 'sold', 28: 'sold', 29: 'sold',  // 20-29
             30: 'sold', 31: 'sold', 32: 'sold', 33: 'sold', 34: 'sold', 35: 'available', 36: 'sold', 37: 'sold', 38: 'sold', 39: 'sold',  // 30-39
@@ -993,6 +1368,13 @@
                 });
             });
 
+            // ¿Mostrar resultados? (publicados o vista previa con ?vista=ganadores)
+            const R = CONFIG.RESULTS;
+            const isPreview = new URLSearchParams(window.location.search).get('vista') === 'ganadores';
+            const showResults = R.PUBLISHED || isPreview;
+            const firstNum = parseInt(R.FIRST_PRIZE, 10);
+            const secondNum = parseInt(R.SECOND_PRIZE, 10);
+
             // Generar 100 boletos (00 al 99)
             for (let i = 0; i < 100; i++) {
                 const btn = document.createElement('button');
@@ -1009,10 +1391,157 @@
                     btn.disabled = true;
                 } else {
                     btn.classList.add('ticket-btn', 'available');
-                    btn.addEventListener('click', () => openModal(numberString));
+                    if (showResults) {
+                        btn.disabled = true; // Sorteo finalizado: ya no se vende
+                    } else {
+                        btn.addEventListener('click', () => openModal(numberString));
+                    }
+                }
+
+                if (showResults && i === firstNum) {
+                    btn.classList.add('winner-gold');
+                    btn.title = 'Ganador del premio mayor';
+                } else if (showResults && i === secondNum) {
+                    btn.classList.add('winner-silver');
+                    btn.title = 'Ganador del segundo premio';
                 }
 
                 grid.appendChild(btn);
+            }
+
+            if (showResults) {
+                showWinners();
+            }
+
+            function showWinners() {
+                const first = String(R.FIRST_PRIZE).padStart(2, '0');
+                const second = String(R.SECOND_PRIZE).padStart(2, '0');
+                const lottery = (R.LOTTERY_NUMBER || (second + first)).toString().padStart(4, '0');
+
+                document.body.classList.add('results-mode');
+                document.title = '¡Ganadores! | Rifa Sergio Canizales';
+                document.getElementById('winners').hidden = false;
+                document.getElementById('preview-flag').hidden = !(isPreview && !R.PUBLISHED);
+                document.getElementById('res-date').textContent = R.DRAW_LABEL;
+                document.getElementById('tickets-title').textContent = 'Tablero Final';
+
+                // Cifras de la lotería con animación escalonada
+                const fillDigits = (el, txt, offset) => {
+                    el.innerHTML = '';
+                    [...txt].forEach((d, k) => {
+                        const s = document.createElement('span');
+                        s.textContent = d;
+                        s.style.animationDelay = `${(offset + k) * 0.25}s`;
+                        el.appendChild(s);
+                    });
+                };
+                fillDigits(document.getElementById('res-digits-first'), lottery.slice(0, 2), 0);
+                fillDigits(document.getElementById('res-digits-last'), lottery.slice(2, 4), 2);
+
+                // Tarjetas: ganador o premio desierto si el número no se vendió
+                const setCard = (cardId, numId, statusId, num) => {
+                    document.getElementById(numId).textContent = num;
+                    const sold = getStatus(parseInt(num, 10)) === 'sold';
+                    const status = document.getElementById(statusId);
+                    if (sold) {
+                        status.textContent = `¡Felicitaciones al dueño del número ${num}! 🎉`;
+                    } else {
+                        document.getElementById(cardId).classList.add('void');
+                        status.textContent = 'Premio desierto · este número no fue vendido';
+                    }
+                };
+                setCard('card-first', 'win-first', 'win-first-status', first);
+                setCard('card-second', 'win-second', 'win-second-status', second);
+
+                // Leyenda del tablero
+                const legend = document.getElementById('legend');
+                legend.insertAdjacentHTML('afterbegin',
+                    '<div class="legend-item"><div class="dot winner-gold"></div> Premio mayor</div>' +
+                    '<div class="legend-item"><div class="dot winner-silver"></div> Segundo premio</div>');
+
+                // WhatsApp: mensajes para después del sorteo
+                const waMsg = encodeURIComponent('¡Hola! Tengo una pregunta sobre el resultado de la rifa.');
+                const waWinner = encodeURIComponent('¡Hola! Tengo un número ganador de la rifa.');
+                document.getElementById('wa-float').href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waMsg}`;
+                document.getElementById('winners-wa').href = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${waWinner}`;
+
+                // Confeti al entrar y al tocar la tarjeta dorada
+                launchConfetti();
+                document.getElementById('card-first').addEventListener('click', launchConfetti);
+            }
+
+            function launchConfetti() {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                if (document.querySelector('.confetti-canvas')) return;
+
+                const canvas = document.createElement('canvas');
+                canvas.className = 'confetti-canvas';
+                document.body.appendChild(canvas);
+                const ctx = canvas.getContext('2d');
+                const colors = ['#d4af37', '#f5d76e', '#ffffff', '#7a0016', '#22c55e', '#c0c7d1'];
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                let W, H;
+
+                function resize() {
+                    W = window.innerWidth;
+                    H = window.innerHeight;
+                    canvas.width = W * dpr;
+                    canvas.height = H * dpr;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                const pieces = [];
+                function burst(n) {
+                    for (let i = 0; i < n; i++) {
+                        pieces.push({
+                            x: Math.random() * W,
+                            y: -20 - Math.random() * H * 0.5,
+                            w: 6 + Math.random() * 6,
+                            h: 10 + Math.random() * 8,
+                            vx: -1.5 + Math.random() * 3,
+                            vy: 2 + Math.random() * 3,
+                            rot: Math.random() * Math.PI,
+                            vr: -0.2 + Math.random() * 0.4,
+                            color: colors[Math.floor(Math.random() * colors.length)],
+                        });
+                    }
+                }
+
+                burst(160);
+                const start = performance.now();
+                let lastBurst = start;
+
+                function frame(now) {
+                    if (now - start < 4000 && now - lastBurst > 1200) {
+                        burst(60);
+                        lastBurst = now;
+                    }
+                    ctx.clearRect(0, 0, W, H);
+                    for (const p of pieces) {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vy += 0.03;
+                        p.rot += p.vr;
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.rot);
+                        ctx.fillStyle = p.color;
+                        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.rot)));
+                        ctx.restore();
+                    }
+                    for (let i = pieces.length - 1; i >= 0; i--) {
+                        if (pieces[i].y > H + 40) pieces.splice(i, 1);
+                    }
+                    if (pieces.length || now - start < 4000) {
+                        requestAnimationFrame(frame);
+                    } else {
+                        window.removeEventListener('resize', resize);
+                        canvas.remove();
+                    }
+                }
+                requestAnimationFrame(frame);
             }
 
             // Progreso de venta (controlado desde CONFIG.PROGRESS_PERCENT)
